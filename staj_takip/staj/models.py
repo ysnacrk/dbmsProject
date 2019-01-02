@@ -61,7 +61,7 @@ class Staj(models.Model):
     baslama_tarihi = models.DateField(null = True , blank = True , verbose_name="Başlama Tarihi")
     bitis_tarihi = models.DateField(null = True , blank = True , verbose_name="Bitiş Tarihi")
     toplam_gun = models.PositiveIntegerField(default = 0 , validators = [MinValueValidator(15)] , verbose_name = "Toplam Gün") 
-    gorusme_eklendi_mi = models.BooleanField(default = False , null = True) 
+    gorusme_eklendi_mi = models.BooleanField(default = False) 
     degerlendirildi = models.BooleanField(default = False)
     
     
