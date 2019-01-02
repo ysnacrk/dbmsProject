@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Görüşmeler{% endblock title %}
+
+{% block body %}
+
+
+{% if gorusmeler %}
+
+
+<div class="container">
+    <h1>Görüşmeler</h1>
+    <a class="btn btn-outline-primary" href="{% url 'staj:gorusmeler_pdf_indir'  %}" role="button" >PDF indir</a>
+    <a class="btn btn-outline-primary" href="{% url 'staj:gorusmeler_exel'  %}" role="button" >Exel indir</a>
+   
+    <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Soyad</th>                    
+                    <th scope="col">Görüşme Tarihi</th>
+                    <th scope="col">Görüşme Saati</th>
+                    <th scope="col">Komisyon Üye 1 İsim</th>
+                    <th scope="col">Komisyon Üye 1 Soyisim</th>
+                    <th scope="col">Komisyon Üye 2 İsim</th>
+                    <th scope="col">Komisyon Üye 2 Soyisim</th>                    
+                    <th scope="col">Düzenle</th>
+
+                    
+                </tr>
+                </thead>
+                <tbody>
+        
+            <ul> 
+        
+            {% for i in gorusmeler %}
+                <li style="list-style : none ;">
+                  <tr>      
+                    <td>{{i.staj.ogrenci.o_isim}}</td>
+                    <td>{{i.staj.ogrenci.o_soyisim}}</td>
+                    <td>{{i.gorusme_tarihi}}</td>
+                    <td>{{i.gorusme_saati}}</td>
+                    <td>{{i.komisyon.uye1_isim}}</td>
+                    <td>{{i.komisyon.uye1_soyisim}}</td>
+                    <td>{{i.komisyon.uye2_isim}}</td>
+                    <td>{{i.komisyon.uye2_soyisim}}</td>
+                    <td>        
+                      <a class="btn btn-outline-primary" href="{% url 'staj:gorusme_duzenle' i.pk %}" role="button" >Düzenle</a>
+                    </td>
+
+                  </tr>
+        
+                </li>
+                {%endfor%}
+            </ul>    
+            </tbody>
+        </table>
+        
+        {% endif %}        
+        
+</div>
+
+
+{% endblock%}

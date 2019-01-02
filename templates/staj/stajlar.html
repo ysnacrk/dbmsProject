@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Öğrenci Ekle{% endblock title %}
+
+{% block list_stajlar %}
+<form method="GET">
+    <select name="query">
+        <option>
+          Değerlendirilmemiş Stajlar
+        </option>
+      </select>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sırala</button>
+    </form>
+{% endblock%}
+{% block body %}
+
+
+<div class="container"><h1>STAJLAR</h1></div>
+{% if get_staj_list %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <li style="list-style : none ;"{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
+
+<div class="container">
+        <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Staj Id</th>
+                    <th scope="col">Öğrenci No</th>
+                    <th scope="col">İsim</th>
+                    <th scope="col">Kurum</th>
+                    <th scope="col">Departman</th>
+                    <th scope="col">Konu</th>
+                    <th scope="col">Şehir</th>
+                    <th scope="col">Staj Günü</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>  
+                    <th scope="col"></th>                
+
+                  </tr>
+                </thead>
+                <tbody>
+        
+            <ul> 
+        
+            {% for i in get_staj_list %}
+                <li style="list-style : none ;">
+                  <tr>      
+                    <td>{{i.pk}}</td>
+                    <td>{{i.ogrenci.o_no}}</td>
+                    <td>{{i.ogrenci.o_isim}}</td>
+                    <td>{{i.kurum_adi}}</td>
+                    <td>{{i.departman_adi}}</td>
+                    <td>{{i.konu}}</td>
+                    <td>{{i.sehir}}</td>
+                    <td>{{i.toplam_gun}}</td>
+
+                    <td>
+                        {% if i.onceki_staj == False %}
+                        {% if i.gorusme_eklendi_mi == False %}
+                      <a class="btn btn-outline-primary" href="{% url 'staj:gorusme_ekle' i.pk %}" role="button" >Görüşme Ekle</a></td>
+                      {%endif%}
+                      {%endif%}
+                      {%if i.onceki_staj  == False %}
+                      <td><a class="btn btn-outline-primary" href="{% url 'staj:mulakat_ekle' i.pk %}" role="button" >Mulakat Ekle</a>
+                      {%endif%}
+                      </td>
+                      <td><a class="btn btn-outline-primary" href="{% url 'staj:staj_detay' i.pk %}" role="button" >Detay</a></td>
+                  </tr>
+        
+                </li>
+                {%endfor%}
+            </ul>    
+            </tbody>
+        </table>
+        {% endif %}        
+        
+</div>
+
+
+{% endblock%}

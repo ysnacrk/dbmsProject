@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Komisyon Düzenle{% endblock title %}
+
+{% block body %}
+
+
+<div class="container">
+    <h1>Komisyon Düzenle</h1>
+        <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-outline-primary">Ekle</button>
+            </form>
+        
+</div>
+
+{% endblock%}

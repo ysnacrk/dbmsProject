@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <title>Görüşmeler</title>
+    <style type="text/css">
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+        .table {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 5px;
+            background-color: #fff;
+        }
+        .table th,
+        .table td {
+            padding: 5px;
+            vertical-align: top;
+            border-top: 1px solid #000;
+            text-align: center;
+        }
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #000;
+        }
+        .table tbody + tbody {
+            border-top: 2px solid #000;
+        }
+        .table .table {
+            background-color: #fff;
+        }
+        .list-group {
+            display: block;
+            width: 100%;
+            list-style: none;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .list-group p {
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            list-style: none;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<div class="container"><h1>Görüşmeler</h1></div>
+{% if gorusmeler %}
+
+</button>
+<div class="container" >
+        <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Soyad</th>                    
+                    <th scope="col">Görüşme Tarihi</th>
+                    <th scope="col">Görüşme Saati</th>
+                    <th scope="col">Komisyon Üye 1</th>
+                    <th scope="col">Komisyon Üye 2</th>                    
+                    <th scope="col">Düzenle</th>
+           
+
+                </tr>
+                </thead>
+                <tbody>
+        
+            <ul> 
+        
+            {% for i in gorusmeler %}
+                <li style="list-style : none ;">
+                  <tr>     
+                    <td>{{i.staj.ogrenci.o_isim}}</td>
+                    <td>{{i.staj.ogrenci.o_soyisim}}</td>
+                    <td>{{i.gorusme_tarihi}}</td>
+                    <td>{{i.gorusme_saati}}</td>
+                    <td>{{i.komisyon.uye1}}</td>
+                    <td>{{i.komisyon.uye2}}</td>
+                  </tr>
+        
+                </li>
+                {%endfor%}
+            </ul>    
+            </tbody>
+        </table>
+        
+        {% endif %}
+        
+        
+</div>
+
+
+

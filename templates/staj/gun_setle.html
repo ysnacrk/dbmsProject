@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Staj Günü{% endblock title %}
+
+{% block body %}
+
+
+<div class="container">
+
+        <h1>Staj günü menüsü</h1>
+        <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-outline-primary" type="submit" >Kaydet</button>
+            </form>            
+</div>
+
+{% endblock%}

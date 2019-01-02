@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Mulakat Ekle{% endblock title %}
+
+
+
+{% block tarih_listele %}
+
+<form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="date" name="ilk_tarih" placeholder="Tarih seçmek için tıklayınız" aria-label="Search">
+    <input class="form-control mr-sm-2" type="date" name="son_tarih" placeholder="Tarih seçmek için tıklayınız" aria-label="Search">
+
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Listele</button>
+  </form>
+        
+  {% endblock%}
+{% block body %}
+
+
+<div class="container"><h1>Mulakatlar</h1></div>
+{% if mulakatlar %}
+
+<div class="container">
+    <a class="btn btn-outline-primary" href="{% url 'staj:mulakatlar_pdf_indir'  %}" role="button" >PDF indir</a>
+    <a class="btn btn-outline-primary" href="{% url 'staj:mulakatlar_exel'  %}" role="button" >Exel indir</a>
+
+        <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Staj</th>
+                    <th scope="col">Tarih</th>
+                    <th scope="col">Devam</th>
+                    <th scope="col">Çaba ve Çalışma</th>
+                    <th scope="col">İşi vaktinde yapma</th>
+                    <th scope="col">Davranış</th>
+                    <th scope="col">Arkadaşlara davranış</th>
+                    <th scope="col">Proje</th>
+                    <th scope="col">Duzen</th>                    
+                    <th scope="col">Sunum</th>
+                    <th scope="col">İçerik</th>
+                    <th scope="col">Sil</th>
+                    <th scope="col">Düzenle</th>
+                    
+
+                </tr>
+                </thead>
+                <tbody>
+        
+            <ul> 
+        
+            {% for i in mulakatlar %}
+                <li style="list-style : none ;">
+                  <tr>     
+                    <td> {{i.staj.ogrenci.o_no}}  </td>
+                    <td>{{i.staj.pk}}</td>
+                    <td>{{i.mulakat_tarhi}}</td>
+                    <td>{{i.devam}}</td>
+                    <td>{{i.caba_calisma}}</td>
+                    <td>{{i.isi_vaktinde_yapma}}</td>
+                    <td>{{i.davranis}}</td>
+                    <td>{{i.arkadaslara_davranis}}</td>
+                    <td>{{i.proje}}</td>
+                    <td>{{i.duzen}}</td>
+                    <td>{{i.sunum}}</td>
+                    <td>{{i.icerik}}</td>
+                    <td><a class="btn btn-outline-primary" href="{% url 'staj:mulakat_sil' i.pk %}" role="button" >SİL</a></td>
+                    <td><a class="btn btn-outline-primary"  href="{% url 'staj:mulakat_duzenle' i.pk %}" role="button" >Düzenle</a></td>
+                  </tr>
+
+        
+                </li>
+                {%endfor%}
+            </ul>    
+            </tbody>
+        </table>
+        
+        {% endif %}
+        
+        
+</div>
+
+
+{% endblock%}
