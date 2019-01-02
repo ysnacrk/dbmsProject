@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Komisyonlar{% endblock title %}
+
+{% block body %}
+
+
+<div class="container"><h1>Komisyonlar</h1></div>
+{% if komisyonlar %}
+
+
+<div class="container">
+        <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Komisyon Id</th>
+                    <th scope="col">Üye 1 İsim</th>
+                    <th scope="col">Üye 1 Soyisim</th>
+                    <th scope="col">Üye 2 İsim</th>
+                    <th scope="col">Üye 2 Soyisim</th>
+                    <th scope="col">Düzenle</th>
+                    <th scope="col">Sil</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+        
+            <ul> 
+        
+            {% for i in komisyonlar %}
+                <li style="list-style : none ;">
+                  <tr>      
+                    <td>{{i.id}}</td>
+                    <td>{{i.uye1_isim}}</td>
+                    <td>{{i.uye1_soyisim}}</td>
+                    <td>{{i.uye2_isim}}</td>
+                    <td>{{i.uye2_soyisim}}</td>
+                    <td>        
+                      <a class="btn btn-outline-primary" href="{% url 'staj:komisyon_duzenle' i.pk %}" role="button" >Düzenle</a>
+                    </td>
+                    <td>        
+                      <a class="btn btn-outline-primary" href="{% url 'staj:komisyon_sil'   i.pk %}" role="button" >Sil</a>
+                    </td>
+                  </tr>
+        
+                </li>
+                {%endfor%}
+            </ul>    
+            </tbody>
+        </table>
+        
+        {% endif %}
+        <a class="btn btn-outline-primary" href="{% url 'staj:komisyon_ekle'  %}" role="button" >Komisyon Ekle</a>
+        
+        
+</div>
+
+
+{% endblock%}

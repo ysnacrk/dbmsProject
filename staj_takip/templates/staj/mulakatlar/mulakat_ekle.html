@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Mulakat Ekle{% endblock title %}
+
+
+
+{% block body %}
+
+
+<div class="container">
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <li style="list-style : none ;"{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h2>Mulakat Ekle</h2>
+<form method="POST">
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-outline-primary" type="submit" >Ekle</button>
+</form>
+
+</div>
+
+{% endblock%}

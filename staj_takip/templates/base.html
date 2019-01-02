@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Staj Uygulaması{% endblock title %}</title>
+
+    <link rel="stylesheet" href="{% static 'assets/css/bootsrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/font.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/mdb.min.css' %}">
+
+
+</head>
+<body>
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/">Anasayfa</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/ogrenciler">Öğrenciler <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="/stajlar">Stajlar</a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="/konular">Konular</a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="/stajlar/mulakatlar">Mulakatlar</a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="/komisyonlar">Komisyonlar</a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="/stajlar/gorusmeler">Görüşmeler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'staj:staj_gun' pk=1 %}" role="button" >Staj günü değiştir</a></td>
+                      </li>
+                  </ul>
+                  {% block list_stajlar %}
+
+                  {% endblock%}
+
+                  {% block tarih_listele %}
+
+                  {% endblock%}
+
+
+                  {% block ogrenci_listele %}
+
+                  {% endblock%}
+
+
+                  {% block konu_rapor %}
+
+                  {% endblock%}
+
+
+                </div>
+              </nav>
+    {% block body %}
+
+    {% endblock%}
+    
+            
+
+{% block chart %}
+
+
+
+{% endblock%}
+
+<script src="{% static 'assets/js/bootstrap.min.js'%}"> </script>
+<script src="{% static 'assets/js/jq.min.js'%}"> </script>
+<script src="{% static 'assets/js/mdb.min.js'%}"> </script>
+<script src="{% static 'assets/js/popper.min.js'%}"> </script>
+
+
+
+    
+
+</body>
+</html>
+
+

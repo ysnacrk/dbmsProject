@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Öğrenci Detay{% endblock title %}
+
+
+{% block body %}
+
+
+
+<div class="container">
+    <h1>Öğrenci Detay</h1>
+<a class="btn btn-outline-info" href="{% url 'staj:edit' pk=ogrenci.pk %}" role="button">Düzenle</a>
+<a class="btn btn-outline-danger" href="{% url 'staj:delete' pk=ogrenci.pk %}" role="button">Sil</a>
+{% if ogrenci.dgs_veya_yatay_mi%}
+<a class="btn btn-outline-info" href="{% url 'staj:dosya_ekle' pk=ogrenci.pk %}" role="button">Dosya Ekle</a>
+{%endif%}
+
+
+<h1>{{ogrenci.o_isim}} 
+     {{ogrenci.o_soyisim}}
+      {{ogrenci.o_no}} 
+      {{ogrenci.o_ogretim}} Öğretim </h1>
+      <h2>Toplam Staj Sayısı : {{ogrenci.staj_sayisi}}</h2>
+      <h2>Kabul Edilen Toplam Gün : {{ogrenci.o_toplam_staj_gunu}}</h2>
+      <h2>Yapmış olduğu toplam staj günü :  {{ogrenci.staj_gunu}}</h2>
+      {% if ogrenci.dgs_veya_yatay_mi%}
+
+      <h3>Öğrenci Dosyaları</h3>
+      <a href="/media/{{ogrenci.ogrenci_dosya}}">{{ogrenci.ogrenci_dosya}}</a>
+      
+      {%endif%}
+
+        {% if stajlar %}
+    <h1>Stajları</h1>
+<ul> 
+
+    {% for staj in stajlar %}
+   <li> <p>{{staj.kurum_adi}} {{staj.departman_adi}} {{staj.sinif_durumu}} {{staj.sehir}} {{staj.konu}} {{staj.baslama_tarihi}} {{staj.bitis_tarihi}} {{staj.toplam_gun}}</p></li>
+
+    {%endfor%}
+    
+</ul>
+
+{% endif %}
+
+
+</div>
+
+{% endblock%}

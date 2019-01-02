@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block title %}Konular{% endblock title %}
+
+
+
+{% block konu_rapor %}
+<form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="date" name="ilk_tarih" placeholder="Tarih seçmek için tıklayınız" aria-label="Search">
+    <input class="form-control mr-sm-2" type="date" name="son_tarih" placeholder="Tarih seçmek için tıklayınız" aria-label="Search">
+
+    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Rapor
+      </button>
+      
+  </form>
+{% endblock%}
+
+{% block body %}
+<canvas id="myChart" style="max-width: 500px;"></canvas>
+
+<div class="col-md-5">
+    <canvas id="myChart"></canvas>
+</div>
+
+<div class="container"><h1>KONULAR</h1>
+  <a class="btn btn-outline-primary" href="{% url 'staj:konu_ekle'  %}" role="button" >Konu Ekle</a>
+
+</div>
+
+{% if konular %}
+
+
+<div class="container">
+ 
+  <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Konu Id</th>
+                    <th scope="col">Başlık</th>
+                    <th scope="col">Düzenle</th>
+                    <th scope="col">Sil</th>
+                </tr>
+                </thead>
+                <tbody>
+        
+            <ul> 
+        
+            {% for i in konular %}
+                <li style="list-style : none ;">
+                  <tr>      
+                    <td>{{i.id}}</td>
+                    <td>{{i.baslik}}</td>
+                    <td>        
+                      <a class="btn btn-outline-primary" href="{% url 'staj:konu_duzenle' i.pk %}" role="button" >Düzenle</a>
+                    </td>
+                    <td>        
+                      <a class="btn btn-outline-primary" href="{% url 'staj:konu_sil'   i.pk %}" role="button" >Sil</a>
+                    </td>
+                  </tr>
+        
+                </li>
+                {%endfor%}
+            </ul>    
+            </tbody>
+        </table>
+        
+        {% endif %}
+        
+        
+</div>
+
+
+
+
+
+{% endblock%}
+
+
+{% block chart %}
+
+
+
+
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var list ="{{konu_baslik_list}}";
+    var list2 = "{{konu_list}}";
+    var list= list.replace(/&#39;/g , "");
+    var list = list.replace('[', "");
+    var list = list.replace(']', "");
+    var list2 = list2.replace('[', "");
+    var list2 = list2.replace(']', "");
+    var list = list.split(",");
+    var list2 = list2.split(",");
+
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels:list,
+        datasets: [{
+          label: '# of Votes',
+          data: list2,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  
+  </script>
+
+  {% endblock%}

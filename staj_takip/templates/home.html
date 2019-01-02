@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block title %}Anasayfa{% endblock title %}
+
+
+{% block body %}
+<div class="container">
+  <h2>Staj Yönetim Sistemine Hoşgeldiniz</h2>
+  <form>
+    <div class="form-group">
+      <label for="email">Sicil Numarası</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Parola</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+{% endblock%}
+

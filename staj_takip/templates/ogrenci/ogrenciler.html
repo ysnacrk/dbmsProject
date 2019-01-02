@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Öğrenciler{% endblock title %}
+
+{% block ogrenci_listele %}
+<form class="form-inline my-2 my-lg-0" method="GET">
+  <input class="form-control mr-sm-2" type="search" name="ogrenci" placeholder="Öğrenci  ara" aria-label="Search">
+
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+</form>
+<form method="GET">
+  <select name="tamamlandi">
+      <option>
+        Stajını tamamlayan öğrenciler
+      </option>
+    </select>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sırala</button>
+  </form>
+{% endblock%}
+{% block body %}
+
+
+
+<div class="container">
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <li style="list-style : none ;"{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
+    <a class="btn btn-outline-primary" href="{% url 'staj:ekle'  %}" role="button" >Öğrenci Ekle</a>
+
+    {% if get_ogrenci_list %}
+
+    <a class="btn btn-outline-primary" href="{% url 'staj:ogrenciler_pdf_indir'  %}" role="button" >PDF indir</a>
+    <a class="btn btn-outline-primary" href="{% url 'staj:ogrenciler_exel'  %}" role="button" >Exel indir</a>
+        
+                <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Öğrenci No</th>
+                            <th scope="col">İsim</th>
+                            <th scope="col">Soyisim</th>
+                            <th scope="col">Öğretim</th>
+                            <th scope="col"> Staj durumu</th>
+                            
+                            <th>Staj Ekle</th>
+                            <th scope="col"> Detay</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+    
+                    <ul> 
+    
+                            {% for i in get_ogrenci_list %}
+                        <li style="list-style : none ;">
+                          <tr>
+                            <td >{{i.o_no}}</a></td>
+                            <td>{{i.o_isim}}</td>
+                            <td>{{i.o_soyisim}}</td>
+                            <td>{{i.o_ogretim}} Öğretim</td>
+                            {%if i.staj_tamamadi_mi %}
+                            <td style="color : green;">Tamamlandı</td>
+                            {% else %}
+                            <td style="color : red;">Tamamlanmadı</td>
+                          {%endif%}
+                            <td><a class="btn btn-outline-primary" href="{% url 'staj:staj_ekle' i.pk  %}" role="button" >Staj Ekle</a>
+                            </td>
+                            <td><a  class="btn btn-outline-primary" href="{% url 'staj:detail' i.pk %}">DETAY</a></td>
+                          </tr>
+    
+                        </li>
+                        {%endfor%}
+                    </ul>    
+                    </tbody>
+            </table>
+    {% endif %}
+</div>
+
+
+
+
+
+{% endblock%}

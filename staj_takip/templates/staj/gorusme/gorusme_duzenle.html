@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Görüşme Düzenle{% endblock title %}
+
+
+    
+{% block body %}
+
+<div class="container"><h2>Görüşme Ekle</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button class="btn btn-outline-primary" type="submit" >Onayla</button>
+    </form>
+</div>
+
+{% endblock%}

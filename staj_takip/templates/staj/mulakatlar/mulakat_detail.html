@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Mulakat Detay{% endblock title %}
+
+
+{% block body %}
+
+
+
+<div class="container-fluid">
+<a class="btn btn-outline-info" href="{% url 'staj:mulakat_ekle' pk=ogrenci.pk %}" role="button">Düzenle</a>
+<a class="btn btn-outline-danger" href="{% url 'staj:mulakat_delete' pk=ogrenci.pk %}" role="button">Sil</a>
+
+
+
+
+</div>
+
+{% endblock%}

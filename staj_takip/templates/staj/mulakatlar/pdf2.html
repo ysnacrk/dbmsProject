@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <title>Görüşmeler</title>
+    <style type="text/css">
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+        .table {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 5px;
+            background-color: #fff;
+        }
+        .table th,
+        .table td {
+            padding: 5px;
+            vertical-align: top;
+            border-top: 1px solid #000;
+            text-align: center;
+        }
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #000;
+        }
+        .table tbody + tbody {
+            border-top: 2px solid #000;
+        }
+        .table .table {
+            background-color: #fff;
+        }
+        .list-group {
+            display: block;
+            width: 100%;
+            list-style: none;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .list-group p {
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            list-style: none;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<div class="container"><h1>Mulakatlar</h1></div>
+{% if mulakatlar %}
+
+</button>
+<div class="container" >
+        <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Staj</th>
+                    <th scope="col">Tarih</th>
+                    <th scope="col">Devam</th>
+                    <th scope="col">Çaba ve Çalışma</th>
+                    <th scope="col">İşi vaktinde yapma</th>
+                    <th scope="col">Davranış</th>
+                    <th scope="col">Arkadaşlara davranış</th>
+                    <th scope="col">Proje</th>
+                    <th scope="col">Duzen</th>                    
+                    <th scope="col">Sunum</th>
+                    <th scope="col">İçerik</th>
+                                 
+
+                </tr>
+                </thead>
+                <tbody>
+        
+            <ul> 
+        
+            {% for i in mulakatlar %}
+                <li style="list-style : none ;">
+                  <tr>     
+                    <td>{{i.staj.ogrenci.o_no}}</td>
+                    <td>{{i.staj.pk}}</td>
+                    <td>{{i.mulakat_tarhi}}</td>
+                    <td>{{i.devam}}</td>
+                    <td>{{i.caba_calisma}}</td>
+                    <td>{{i.isi_vaktinde_yapma}}</td>
+                    <td>{{i.davranis}}</td>
+                    <td>{{i.arkadaslara_davranis}}</td>
+                    <td>{{i.proje}}</td>
+                    <td>{{i.duzen}}</td>
+                    <td>{{i.sunum}}</td>
+                    <td>{{i.icerik}}</td>
+                  </tr>
+        
+                </li>
+                {%endfor%}
+            </ul>    
+            </tbody>
+        </table>
+        
+        {% endif %}
+        
+        
+</div>
+
+
+

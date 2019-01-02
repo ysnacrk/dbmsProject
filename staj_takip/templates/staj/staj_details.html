@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Staj Detayları{% endblock title %}
+
+
+
+
+{% block body %}
+
+
+<div class="container">
+        <h1>{{staj.ogrenci}}  </h1>
+<h4>{{staj.kurum_adi}} {{staj.departman_adi}} {{staj.sinif_durumu}} {{staj.sehir}} {{staj.konu}} {{staj.baslama_tarihi}} {{staj.bitis_tarihi}} {{staj.toplam_gun}}</h4>
+
+<a class="btn btn-outline-info" href="{% url 'staj:staj_edit' staj.pk %}" role="button">Düzenle</a>
+<a class="btn btn-outline-danger" href="{% url 'staj:staj_sil' staj.pk %}" role="button">Sil</a>  
+
+      {% if mulakat %}
+
+            <h1>Mulakat</h1>
+                  <table class="table">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">Id</th>
+                              <th scope="col">Staj</th>
+                              <th scope="col">Tarih</th>
+                              <th scope="col">Devam</th>
+                              <th scope="col">Çaba ve Çalışma</th>
+                              <th scope="col">İşi vaktinde yapma</th>
+                              <th scope="col">Davranış</th>
+                              <th scope="col">Arkadaşlara davranış</th>
+                              <th scope="col">Proje</th>
+                              <th scope="col">Duzen</th>                    
+                              <th scope="col">Sunum</th>
+                              <th scope="col">İçerik</th>
+                              
+          
+                          </tr>
+                          </thead>
+                          <tbody>
+            
+                            <tr>     
+                              <td>{{mulakat.staj.ogrenci.o_no}}</td>
+                              <td>{{mulakat.staj.pk}}</td>
+                              <td>{{mulakat.mulakat_tarhi}}</td>
+                              <td>{{mulakat.devam}}</td>
+                              <td>{{mulakat.caba_calisma}}</td>
+                              <td>{{mulakat.isi_vaktinde_yapma}}</td>
+                              <td>{{mulakat.davranis}}</td>
+                              <td>{{mulakat.arkadaslara_davranis}}</td>
+                              <td>{{mulakat.proje}}</td>
+                              <td>{{mulakat.duzen}}</td>
+                              <td>{{mulakat.sunum}}</td>
+                              <td>{{mulakat.icerik}}</td>
+                            </tr>
+  
+                      </tbody>
+                  </table>
+
+
+      {% endif %}
+
+
+
+</div>
+{% endblock%}
